@@ -3,14 +3,20 @@ package htlmlbuilder
 import "bytes"
 
 type Element struct {
-	name      string
-	innerText string
-	buff      bytes.Buffer
-	Children  []*Element
+	name        string
+	innerText   string
+	isInnerText bool
+	buff        bytes.Buffer
+	Children    []*Element
 }
 
 func (e *Element) Render() string {
 	e.buff.Reset()
+	if e.isInnerText {
+		e.buff.WriteString(e.innerText)
+		return e.buff.String()
+	}
+
 	e.buff.WriteString("<" + e.name + ">")
 	e.buff.WriteString(e.innerText)
 
@@ -21,11 +27,6 @@ func (e *Element) Render() string {
 	e.buff.WriteString("</" + e.name + ">")
 
 	return e.buff.String()
-}
-
-func (e *Element) InnerText(text string) *Element {
-	e.innerText = text
-	return e
 }
 
 func NewElement(name string, children ...*Element) *Element {

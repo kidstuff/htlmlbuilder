@@ -18,22 +18,22 @@ func TestElementRender(t *testing.T) {
 		},
 		{
 			name:     "Element with inner text",
-			input:    NewElement("div").InnerText("Hello"),
+			input:    NewElement("div", Text("Hello")),
 			expected: "<div>Hello</div>",
 		},
 		{
 			name:     "Element with inner text and children",
-			input:    NewElement("div", NewElement("span")).InnerText("Hello"),
+			input:    NewElement("div", Text("Hello"), NewElement("span")),
 			expected: "<div>Hello<span></span></div>",
 		},
 		{
 			name:     "Element with inner text and children",
-			input:    NewElement("div", NewElement("span").InnerText("Hello")),
+			input:    NewElement("div", NewElement("span", Text("Hello"))),
 			expected: "<div><span>Hello</span></div>",
 		},
 		{
 			name:     "Element with inner text and children",
-			input:    NewElement("div", NewElement("span", NewElement("b").InnerText("Hello"))).InnerText("Hello"),
+			input:    NewElement("div", Text("Hello"), NewElement("span", NewElement("b", Text("Hello")))),
 			expected: "<div>Hello<span><b>Hello</b></span></div>",
 		},
 	}
