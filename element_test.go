@@ -36,6 +36,16 @@ func TestElementRender(t *testing.T) {
 			input:    NewElement("div", Text("Hello"), NewElement("span", NewElement("b", Text("Hello")))),
 			expected: "<div>Hello<span><b>Hello</b></span></div>",
 		},
+		{
+			name:     "Element with attributes",
+			input:    NewElement("div").Attr("id", "test").Attr("class", "test"),
+			expected: "<div id=\"test\" class=\"test\"></div>",
+		},
+		{
+			name:     "Element with attributes and inner text",
+			input:    NewElement("div", Text("Hello")).Attr("id", "test").Attr("class", "test"),
+			expected: "<div id=\"test\" class=\"test\">Hello</div>",
+		},
 	}
 
 	for _, test := range tests {
