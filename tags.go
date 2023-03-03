@@ -1,6 +1,6 @@
 // Package htmlbuilder provides a simple way to build HTML documents.
 // Here we have all HTML 5 tags.
-package htlmlbuilder
+package htmlbuilder
 
 func HTML(children ...*Element) *Element {
 	return NewElement("html", children...)

@@ -1,4 +1,4 @@
-package htlmlbuilder
+package htmlbuilder
 
 import "testing"
 
