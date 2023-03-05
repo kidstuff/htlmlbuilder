@@ -2,437 +2,444 @@
 // Here we have all HTML 5 tags.
 package htmlbuilder
 
-func HTML(children ...*Element) *Element {
+func HTML(children ...Renderer) *Element {
 	return NewElement("html", children...)
 }
 
-func Text(text string) *Element {
-	return &Element{
-		isInnerText: true,
-		innerText:   text,
+func Text(text string) *InnerText {
+	return &InnerText{
+		text:     text,
+		isUnsafe: false,
 	}
 }
 
-func Abbr(children ...*Element) *Element {
+func UnsafeText(text string) *InnerText {
+	return &InnerText{
+		text:     text,
+		isUnsafe: true,
+	}
+}
+
+func Abbr(children ...Renderer) *Element {
 	return NewElement("abbr", children...)
 }
 
-func Address(children ...*Element) *Element {
+func Address(children ...Renderer) *Element {
 	return NewElement("address", children...)
 }
 
-func Area(children ...*Element) *Element {
+func Area(children ...Renderer) *Element {
 	return NewElement("area", children...)
 }
 
-func Article(children ...*Element) *Element {
+func Article(children ...Renderer) *Element {
 	return NewElement("article", children...)
 }
 
-func Aside(children ...*Element) *Element {
+func Aside(children ...Renderer) *Element {
 	return NewElement("aside", children...)
 }
 
-func Audio(children ...*Element) *Element {
+func Audio(children ...Renderer) *Element {
 	return NewElement("audio", children...)
 }
 
-func Base(children ...*Element) *Element {
+func Base(children ...Renderer) *Element {
 	return NewElement("base", children...)
 }
 
-func Bdi(children ...*Element) *Element {
+func Bdi(children ...Renderer) *Element {
 	return NewElement("bdi", children...)
 }
 
-func Bdo(children ...*Element) *Element {
+func Bdo(children ...Renderer) *Element {
 	return NewElement("bdo", children...)
 }
 
-func Blockquote(children ...*Element) *Element {
+func Blockquote(children ...Renderer) *Element {
 	return NewElement("blockquote", children...)
 }
 
-func Body(children ...*Element) *Element {
+func Body(children ...Renderer) *Element {
 	return NewElement("body", children...)
 }
 
-func Br(children ...*Element) *Element {
+func Br(children ...Renderer) *Element {
 	return NewElement("br", children...)
 }
 
-func Button(children ...*Element) *Element {
+func Button(children ...Renderer) *Element {
 	return NewElement("button", children...)
 }
 
-func Canvas(children ...*Element) *Element {
+func Canvas(children ...Renderer) *Element {
 	return NewElement("canvas", children...)
 }
 
-func Caption(children ...*Element) *Element {
+func Caption(children ...Renderer) *Element {
 	return NewElement("caption", children...)
 }
 
-func Cite(children ...*Element) *Element {
+func Cite(children ...Renderer) *Element {
 	return NewElement("cite", children...)
 }
 
-func Code(children ...*Element) *Element {
+func Code(children ...Renderer) *Element {
 	return NewElement("code", children...)
 }
 
-func Col(children ...*Element) *Element {
+func Col(children ...Renderer) *Element {
 	return NewElement("col", children...)
 }
 
-func Colgroup(children ...*Element) *Element {
+func Colgroup(children ...Renderer) *Element {
 	return NewElement("colgroup", children...)
 }
 
-func Command(children ...*Element) *Element {
+func Command(children ...Renderer) *Element {
 	return NewElement("command", children...)
 }
 
-func Datalist(children ...*Element) *Element {
+func Datalist(children ...Renderer) *Element {
 	return NewElement("datalist", children...)
 }
 
-func Dd(children ...*Element) *Element {
+func Dd(children ...Renderer) *Element {
 	return NewElement("dd", children...)
 }
 
-func Del(children ...*Element) *Element {
+func Del(children ...Renderer) *Element {
 	return NewElement("del", children...)
 }
 
-func Details(children ...*Element) *Element {
+func Details(children ...Renderer) *Element {
 	return NewElement("details", children...)
 }
 
-func Dfn(children ...*Element) *Element {
+func Dfn(children ...Renderer) *Element {
 	return NewElement("dfn", children...)
 }
 
-func Div(children ...*Element) *Element {
+func Div(children ...Renderer) *Element {
 	return NewElement("div", children...)
 }
 
-func Dl(children ...*Element) *Element {
+func Dl(children ...Renderer) *Element {
 	return NewElement("dl", children...)
 }
 
-func Dt(children ...*Element) *Element {
+func Dt(children ...Renderer) *Element {
 	return NewElement("dt", children...)
 }
 
-func Em(children ...*Element) *Element {
+func Em(children ...Renderer) *Element {
 	return NewElement("em", children...)
 }
 
-func Embed(children ...*Element) *Element {
+func Embed(children ...Renderer) *Element {
 	return NewElement("embed", children...)
 }
 
-func Fieldset(children ...*Element) *Element {
+func Fieldset(children ...Renderer) *Element {
 	return NewElement("fieldset", children...)
 }
 
-func Figcaption(children ...*Element) *Element {
+func Figcaption(children ...Renderer) *Element {
 	return NewElement("figcaption", children...)
 }
 
-func Figure(children ...*Element) *Element {
+func Figure(children ...Renderer) *Element {
 	return NewElement("figure", children...)
 }
 
-func Footer(children ...*Element) *Element {
+func Footer(children ...Renderer) *Element {
 	return NewElement("footer", children...)
 }
 
-func Form(children ...*Element) *Element {
+func Form(children ...Renderer) *Element {
 	return NewElement("form", children...)
 }
 
-func H1(children ...*Element) *Element {
+func H1(children ...Renderer) *Element {
 	return NewElement("h1", children...)
 }
 
-func H2(children ...*Element) *Element {
+func H2(children ...Renderer) *Element {
 	return NewElement("h2", children...)
 }
 
-func H3(children ...*Element) *Element {
+func H3(children ...Renderer) *Element {
 	return NewElement("h3", children...)
 }
 
-func H4(children ...*Element) *Element {
+func H4(children ...Renderer) *Element {
 	return NewElement("h4", children...)
 }
 
-func H5(children ...*Element) *Element {
+func H5(children ...Renderer) *Element {
 	return NewElement("h5", children...)
 }
 
-func H6(children ...*Element) *Element {
+func H6(children ...Renderer) *Element {
 	return NewElement("h6", children...)
 }
 
-func Head(children ...*Element) *Element {
+func Head(children ...Renderer) *Element {
 	return NewElement("head", children...)
 }
 
-func Header(children ...*Element) *Element {
+func Header(children ...Renderer) *Element {
 	return NewElement("header", children...)
 }
 
-func Hr(children ...*Element) *Element {
+func Hr(children ...Renderer) *Element {
 	return NewElement("hr", children...)
 }
 
-func I(children ...*Element) *Element {
+func I(children ...Renderer) *Element {
 	return NewElement("i", children...)
 }
 
-func Iframe(children ...*Element) *Element {
+func Iframe(children ...Renderer) *Element {
 	return NewElement("iframe", children...)
 }
 
-func Img(children ...*Element) *Element {
+func Img(children ...Renderer) *Element {
 	return NewElement("img", children...)
 }
 
-func Input(children ...*Element) *Element {
+func Input(children ...Renderer) *Element {
 	return NewElement("input", children...)
 }
 
-func Ins(children ...*Element) *Element {
+func Ins(children ...Renderer) *Element {
 	return NewElement("ins", children...)
 }
 
-func Kbd(children ...*Element) *Element {
+func Kbd(children ...Renderer) *Element {
 	return NewElement("kbd", children...)
 }
 
-func Keygen(children ...*Element) *Element {
+func Keygen(children ...Renderer) *Element {
 	return NewElement("keygen", children...)
 }
 
-func Label(children ...*Element) *Element {
+func Label(children ...Renderer) *Element {
 	return NewElement("label", children...)
 }
 
-func Legend(children ...*Element) *Element {
+func Legend(children ...Renderer) *Element {
 	return NewElement("legend", children...)
 }
 
-func Li(children ...*Element) *Element {
+func Li(children ...Renderer) *Element {
 	return NewElement("li", children...)
 }
 
-func Link(children ...*Element) *Element {
+func Link(children ...Renderer) *Element {
 	return NewElement("link", children...)
 }
 
-func Main(children ...*Element) *Element {
+func Main(children ...Renderer) *Element {
 	return NewElement("main", children...)
 }
 
-func Map(children ...*Element) *Element {
+func Map(children ...Renderer) *Element {
 	return NewElement("map", children...)
 }
 
-func Mark(children ...*Element) *Element {
+func Mark(children ...Renderer) *Element {
 	return NewElement("mark", children...)
 }
 
-func Menu(children ...*Element) *Element {
+func Menu(children ...Renderer) *Element {
 	return NewElement("menu", children...)
 }
 
-func Menuitem(children ...*Element) *Element {
+func Menuitem(children ...Renderer) *Element {
 	return NewElement("menuitem", children...)
 }
 
-func Meta(children ...*Element) *Element {
+func Meta(children ...Renderer) *Element {
 	return NewElement("meta", children...)
 }
 
-func Meter(children ...*Element) *Element {
+func Meter(children ...Renderer) *Element {
 	return NewElement("meter", children...)
 }
 
-func Nav(children ...*Element) *Element {
+func Nav(children ...Renderer) *Element {
 	return NewElement("nav", children...)
 }
 
-func Noscript(children ...*Element) *Element {
+func Noscript(children ...Renderer) *Element {
 	return NewElement("noscript", children...)
 }
 
-func Object(children ...*Element) *Element {
+func Object(children ...Renderer) *Element {
 	return NewElement("object", children...)
 }
 
-func Ol(children ...*Element) *Element {
+func Ol(children ...Renderer) *Element {
 	return NewElement("ol", children...)
 }
 
-func Optgroup(children ...*Element) *Element {
+func Optgroup(children ...Renderer) *Element {
 	return NewElement("optgroup", children...)
 }
 
-func Option(children ...*Element) *Element {
+func Option(children ...Renderer) *Element {
 	return NewElement("option", children...)
 }
 
-func Output(children ...*Element) *Element {
+func Output(children ...Renderer) *Element {
 	return NewElement("output", children...)
 }
 
-func P(children ...*Element) *Element {
+func P(children ...Renderer) *Element {
 	return NewElement("p", children...)
 }
 
-func Param(children ...*Element) *Element {
+func Param(children ...Renderer) *Element {
 	return NewElement("param", children...)
 }
 
-func Pre(children ...*Element) *Element {
+func Pre(children ...Renderer) *Element {
 	return NewElement("pre", children...)
 }
 
-func Progress(children ...*Element) *Element {
+func Progress(children ...Renderer) *Element {
 	return NewElement("progress", children...)
 }
 
-func Q(children ...*Element) *Element {
+func Q(children ...Renderer) *Element {
 	return NewElement("q", children...)
 }
 
-func Rp(children ...*Element) *Element {
+func Rp(children ...Renderer) *Element {
 	return NewElement("rp", children...)
 }
 
-func Rt(children ...*Element) *Element {
+func Rt(children ...Renderer) *Element {
 	return NewElement("rt", children...)
 }
 
-func Ruby(children ...*Element) *Element {
+func Ruby(children ...Renderer) *Element {
 	return NewElement("ruby", children...)
 }
 
-func S(children ...*Element) *Element {
+func S(children ...Renderer) *Element {
 	return NewElement("s", children...)
 }
 
-func Samp(children ...*Element) *Element {
+func Samp(children ...Renderer) *Element {
 	return NewElement("samp", children...)
 }
 
-func Script(children ...*Element) *Element {
+func Script(children ...Renderer) *Element {
 	return NewElement("script", children...)
 }
 
-func Section(children ...*Element) *Element {
+func Section(children ...Renderer) *Element {
 	return NewElement("section", children...)
 }
 
-func Select(children ...*Element) *Element {
+func Select(children ...Renderer) *Element {
 	return NewElement("select", children...)
 }
 
-func Small(children ...*Element) *Element {
+func Small(children ...Renderer) *Element {
 	return NewElement("small", children...)
 }
 
-func Source(children ...*Element) *Element {
+func Source(children ...Renderer) *Element {
 	return NewElement("source", children...)
 }
 
-func Span(children ...*Element) *Element {
+func Span(children ...Renderer) *Element {
 	return NewElement("span", children...)
 }
 
-func Strong(children ...*Element) *Element {
+func Strong(children ...Renderer) *Element {
 	return NewElement("strong", children...)
 }
 
-func Style(children ...*Element) *Element {
+func Style(children ...Renderer) *Element {
 	return NewElement("style", children...)
 }
 
-func Sub(children ...*Element) *Element {
+func Sub(children ...Renderer) *Element {
 	return NewElement("sub", children...)
 }
 
-func Summary(children ...*Element) *Element {
+func Summary(children ...Renderer) *Element {
 	return NewElement("summary", children...)
 }
 
-func Sup(children ...*Element) *Element {
+func Sup(children ...Renderer) *Element {
 	return NewElement("sup", children...)
 }
 
-func Table(children ...*Element) *Element {
+func Table(children ...Renderer) *Element {
 	return NewElement("table", children...)
 }
 
-func Tbody(children ...*Element) *Element {
+func Tbody(children ...Renderer) *Element {
 	return NewElement("tbody", children...)
 }
 
-func Td(children ...*Element) *Element {
+func Td(children ...Renderer) *Element {
 	return NewElement("td", children...)
 }
 
-func Textarea(children ...*Element) *Element {
+func Textarea(children ...Renderer) *Element {
 	return NewElement("textarea", children...)
 }
 
-func Tfoot(children ...*Element) *Element {
+func Tfoot(children ...Renderer) *Element {
 	return NewElement("tfoot", children...)
 }
 
-func Th(children ...*Element) *Element {
+func Th(children ...Renderer) *Element {
 	return NewElement("th", children...)
 }
 
-func Thead(children ...*Element) *Element {
+func Thead(children ...Renderer) *Element {
 	return NewElement("thead", children...)
 }
 
-func Time(children ...*Element) *Element {
+func Time(children ...Renderer) *Element {
 	return NewElement("time", children...)
 }
 
-func Title(children ...*Element) *Element {
+func Title(children ...Renderer) *Element {
 	return NewElement("title", children...)
 }
 
-func Tr(children ...*Element) *Element {
+func Tr(children ...Renderer) *Element {
 	return NewElement("tr", children...)
 }
 
-func Track(children ...*Element) *Element {
+func Track(children ...Renderer) *Element {
 	return NewElement("track", children...)
 }
 
-func U(children ...*Element) *Element {
+func U(children ...Renderer) *Element {
 	return NewElement("u", children...)
 }
 
-func Ul(children ...*Element) *Element {
+func Ul(children ...Renderer) *Element {
 	return NewElement("ul", children...)
 }
 
-func Var(children ...*Element) *Element {
+func Var(children ...Renderer) *Element {
 	return NewElement("var", children...)
 }
 
-func Video(children ...*Element) *Element {
+func Video(children ...Renderer) *Element {
 	return NewElement("video", children...)
 }
 
-func Wbr(children ...*Element) *Element {
+func Wbr(children ...Renderer) *Element {
 	return NewElement("wbr", children...)
 }

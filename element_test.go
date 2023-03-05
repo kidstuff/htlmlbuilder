@@ -38,13 +38,19 @@ func TestElementRender(t *testing.T) {
 		},
 		{
 			name:     "Element with attributes",
-			input:    NewElement("div").Attr("id", "test").Attr("class", "test"),
+			input:    NewElement("div", Attr("id", "test"), Attr("class", "test")),
 			expected: "<div id=\"test\" class=\"test\"></div>",
 		},
 		{
 			name:     "Element with attributes and inner text",
-			input:    NewElement("div", Text("Hello")).Attr("id", "test").Attr("class", "test"),
+			input:    NewElement("div", Attr("id", "test"), Attr("class", "test"), Text("Hello")),
 			expected: "<div id=\"test\" class=\"test\">Hello</div>",
+		},
+
+		{
+			name:     "Element with attributes and children",
+			input:    NewElement("div", Attr("id", "test"), Attr("class", "test"), Span(Text("test"))),
+			expected: "<div id=\"test\" class=\"test\"><span>test</span></div>",
 		},
 	}
 

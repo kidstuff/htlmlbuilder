@@ -1,56 +1,82 @@
 package htmlbuilder
 
-import "bytes"
+import (
+	"bytes"
+	"html"
+)
+
+type Renderer interface {
+	Render() string
+}
 
 type Element struct {
-	name        string
-	innerText   string
-	isInnerText bool
-	buff        bytes.Buffer
-	attr        map[string]string
-	Children    []*Element
+	name          string
+	elementBuff   bytes.Buffer
+	attributeBuff bytes.Buffer
+	content       []Renderer
 }
 
 func (e *Element) Render() string {
-	e.buff.Reset()
-	if e.isInnerText {
-		e.buff.WriteString(e.innerText)
-		return e.buff.String()
-	}
+	e.elementBuff.Reset()
+	e.attributeBuff.Reset()
 
-	e.buff.WriteString("<" + e.name)
+	buff := bytes.Buffer{}
+	buff.WriteString("<" + e.name)
 
-	if e.attr != nil {
-		for key, value := range e.attr {
-			e.buff.WriteString(" " + key + "=\"" + value + "\"")
+	for _, c := range e.content {
+		switch c.(type) {
+		case *Element:
+			e.elementBuff.WriteString(c.Render())
+		case *InnerText:
+			e.elementBuff.WriteString(c.Render())
+		case *Attribute:
+			e.attributeBuff.WriteString(" " + c.Render())
 		}
 	}
 
-	e.buff.WriteString(">")
-
-	e.buff.WriteString(e.innerText)
-
-	for _, child := range e.Children {
-		e.buff.WriteString(child.Render())
+	if e.attributeBuff.Len() > 0 {
+		buff.WriteString(e.attributeBuff.String())
 	}
 
-	e.buff.WriteString("</" + e.name + ">")
+	buff.WriteString(">")
+	buff.WriteString(e.elementBuff.String())
+	buff.WriteString("</" + e.name + ">")
 
-	return e.buff.String()
+	return buff.String()
 }
 
-func (e *Element) Attr(key, value string) *Element {
-	if e.attr == nil {
-		e.attr = make(map[string]string)
-	}
-
-	e.attr[key] = value
-	return e
-}
-
-func NewElement(name string, children ...*Element) *Element {
+func NewElement(name string, content ...Renderer) *Element {
 	return &Element{
-		name:     name,
-		Children: children,
+		name:    name,
+		content: content,
 	}
+}
+
+type Attribute struct {
+	key   string
+	value string
+}
+
+func (a *Attribute) Render() string {
+	return a.key + "=\"" + html.EscapeString(a.value) + "\""
+}
+
+func Attr(key, value string) *Attribute {
+	return &Attribute{
+		key:   key,
+		value: value,
+	}
+}
+
+type InnerText struct {
+	text     string
+	isUnsafe bool
+}
+
+func (i *InnerText) Render() string {
+	if i.isUnsafe {
+		return i.text
+	}
+
+	return html.EscapeString(i.text)
 }
