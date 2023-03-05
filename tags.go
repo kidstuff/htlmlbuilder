@@ -20,6 +20,18 @@ func UnsafeText(text string) *InnerText {
 	}
 }
 
+func A(children ...Renderer) *Element {
+	return NewElement("a", children...)
+}
+
+func Svg(children ...Renderer) *Element {
+	return NewElement("svg", children...)
+}
+
+func Use(children ...Renderer) *Element {
+	return NewElement("use", children...)
+}
+
 func Abbr(children ...Renderer) *Element {
 	return NewElement("abbr", children...)
 }
