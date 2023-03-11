@@ -455,3 +455,7 @@ func Video(children ...Renderer) *Element {
 func Wbr(children ...Renderer) *Element {
 	return NewElement("wbr", children...)
 }
+
+func Rect(children ...Renderer) *Element {
+	return NewElement("rect", children...)
+}
